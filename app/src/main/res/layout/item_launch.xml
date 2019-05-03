@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+
+    <TextView
+            android:id="@+id/tv_launch_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_alignParentStart="true"
+            tools:text="Name launch"/>
+    <TextView
+            android:id="@+id/tv_window_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_launch_name"
+            android:text="@string/window_start"/>
+
+
+    <TextView
+            android:id="@+id/tv_window_open"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_window_start"
+            tools:text="Start"/>
+
+    <TextView
+            android:id="@+id/tv_char"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_window_start"
+            android:layout_toEndOf="@id/tv_window_open"
+            android:layout_marginStart="4dp"
+            android:text="@string/char_mock"/>
+
+
+    <TextView
+            android:id="@+id/tv_window_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_below="@+id/tv_window_start"
+            android:layout_toEndOf="@id/tv_char"
+            tools:text="End"/>
+
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="4dp"
+            android:layout_below="@id/tv_window_open"
+            android:background="@color/colorPrimary"/>
+
+</RelativeLayout>

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Rocket Launch</string>
+    <string name="window_start">Стартовое окно:</string>
+    <string name="char_mock">/</string>
 </resources>
