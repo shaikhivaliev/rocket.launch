@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorItemCountdown"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/countdown_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/next_rocket_launch" />
+
+    <TextView
+        android:id="@+id/tv_countdown_day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/countdown_text"
+        android:layout_alignStart="@+id/countdown_text"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        tools:text="days" />
+
+    <TextView
+        android:id="@+id/tv_countdown_hour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/countdown_text"
+        android:layout_marginStart="8dp"
+        android:layout_toEndOf="@+id/tv_countdown_day"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        tools:text="hours" />
+
+    <TextView
+        android:id="@+id/tv_countdown_minute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/countdown_text"
+        android:layout_marginStart="8dp"
+        android:layout_toEndOf="@+id/tv_countdown_hour"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        tools:text="minute" />
+
+    <TextView
+        android:id="@+id/tv_countdown_second"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/countdown_text"
+        android:layout_marginStart="8dp"
+        android:layout_toEndOf="@+id/tv_countdown_minute"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        tools:text="second" />
+
+
+</RelativeLayout>
+
+
+

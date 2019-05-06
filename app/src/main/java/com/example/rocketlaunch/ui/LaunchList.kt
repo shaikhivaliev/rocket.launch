@@ -1,32 +1,29 @@
 package com.example.rocketlaunch.ui
 
 import android.os.Bundle
+import android.os.Handler
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import com.example.rocketlaunch.BuildConfig
-import com.example.rocketlaunch.R
 import com.example.rocketlaunch.entity.LaunchResponce
-import com.example.rocketlaunch.server.ApiLaunch
 import com.example.rocketlaunch.server.ApiUtils
 import kotlinx.android.synthetic.main.fragment_launch_list.*
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlinx.android.synthetic.main.item_countdown.*
+
 
 class LaunchList : Fragment(), OnItemLaunchListClickListener {
 
     private lateinit var adapter: LaunchAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
-        inflater.inflate(R.layout.fragment_launch_list, container, false)
+        inflater.inflate(com.example.rocketlaunch.R.layout.fragment_launch_list, container, false)
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -35,6 +32,7 @@ class LaunchList : Fragment(), OnItemLaunchListClickListener {
         adapter.setListener(this)
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = adapter
+
 
         getLaunches()
 
@@ -52,9 +50,16 @@ class LaunchList : Fragment(), OnItemLaunchListClickListener {
 
                 adapter.addData(response.body()?.launches)
 
+                var timer = Timer()
+                timer.scheduleAtFixedRate(object : TimerTask() {
+                    override fun run() {
+                        activity?.runOnUiThread {
+                            initCountdown(response.body()?.launches?.get(0)?.launchWindowStart!!)
+                        }
+                    }
+                }, 0, 1000)
             }
         })
-
 
     }
 
@@ -63,9 +68,31 @@ class LaunchList : Fragment(), OnItemLaunchListClickListener {
 
         activity?.supportFragmentManager
             ?.beginTransaction()
-            ?.replace(R.id.container, LaunchDetail.newInstance(launchId))
+            ?.replace(com.example.rocketlaunch.R.id.container, LaunchDetail.newInstance(launchId))
             ?.addToBackStack(LaunchDetail::javaClass.name)
             ?.commit()
+    }
+
+    fun initCountdown(windowStart: String) {
+
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+        val windowStart = dateFormat.parse(windowStart)
+        val currentDate = Date()
+
+        var diff = windowStart.time - currentDate.time
+        val days = diff / (24 * 60 * 60 * 1000)
+        diff -= days * (24 * 60 * 60 * 1000)
+        val hours = diff / (60 * 60 * 1000)
+        diff -= hours * (60 * 60 * 1000)
+        val minutes = diff / (60 * 1000)
+        diff -= minutes * (60 * 1000)
+        val seconds = diff / 1000
+
+        tv_countdown_day.text = days.toString() + " DAYS"
+        tv_countdown_hour.text = hours.toString() + " HRS"
+        tv_countdown_minute.text = minutes.toString() + " MINS"
+        tv_countdown_second.text = seconds.toString() + " SECS"
+
     }
 
 }

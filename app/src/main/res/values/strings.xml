@@ -3,4 +3,5 @@
     <string name="window_start">Стартовое окно:</string>
     <string name="char_mock">/</string>
     <string name="map">Map</string>
+    <string name="next_rocket_launch">Next rocket launch:</string>
 </resources>
