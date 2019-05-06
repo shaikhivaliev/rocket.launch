@@ -6,5 +6,6 @@ data class Launch(
     @SerializedName("id") val launchId: Int,
     @SerializedName("name") val launchName: String,
     @SerializedName("windowstart") val launchWindowStart: String,
-    @SerializedName("windowend") val launchWindowEnd: String
+    @SerializedName("windowend") val launchWindowEnd: String,
+    @SerializedName("rocket") val rocket: Rocket
 )

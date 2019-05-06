@@ -60,7 +60,12 @@ class LaunchList : Fragment(), OnItemLaunchListClickListener {
 
 
     override fun onClick(launchId: Int) {
-        Toast.makeText(activity, launchId.toString(), Toast.LENGTH_LONG).show()
+
+        activity?.supportFragmentManager
+            ?.beginTransaction()
+            ?.replace(R.id.container, LaunchDetail.newInstance(launchId))
+            ?.addToBackStack(LaunchDetail::javaClass.name)
+            ?.commit()
     }
 
 }
