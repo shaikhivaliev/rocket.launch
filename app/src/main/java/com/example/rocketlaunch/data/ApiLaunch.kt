@@ -1,4 +1,4 @@
-package com.example.rocketlaunch.server
+package com.example.rocketlaunch.data
 
 import com.example.rocketlaunch.entity.LaunchResponce
 import com.example.rocketlaunch.entity.PadResponce

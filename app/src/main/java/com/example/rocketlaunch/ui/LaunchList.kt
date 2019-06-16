@@ -1,26 +1,28 @@
 package com.example.rocketlaunch.ui
 
 import android.os.Bundle
-import android.os.Handler
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.rocketlaunch.R
+import com.example.rocketlaunch.data.ApiUtils
 import com.example.rocketlaunch.entity.LaunchResponce
-import com.example.rocketlaunch.server.ApiUtils
 import kotlinx.android.synthetic.main.fragment_launch_list.*
+import kotlinx.android.synthetic.main.item_countdown.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlinx.android.synthetic.main.item_countdown.*
 
 
 class LaunchList : Fragment(), OnItemLaunchListClickListener {
 
     private lateinit var adapter: LaunchAdapter
+    private var stop: Boolean = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
         inflater.inflate(com.example.rocketlaunch.R.layout.fragment_launch_list, container, false)
@@ -39,7 +41,7 @@ class LaunchList : Fragment(), OnItemLaunchListClickListener {
     }
 
     private fun getLaunches() {
-
+        Log.d("TIMER", "getLaunches")
 
         ApiUtils.getApiService()?.getLaunches()?.enqueue(object : Callback<LaunchResponce> {
             override fun onFailure(call: Call<LaunchResponce>, t: Throwable) {
@@ -50,13 +52,17 @@ class LaunchList : Fragment(), OnItemLaunchListClickListener {
 
                 adapter.addData(response.body()?.launches)
 
-                var timer = Timer()
+                val timer = Timer()
                 timer.scheduleAtFixedRate(object : TimerTask() {
                     override fun run() {
+                        if (stop) {
+                            return
+                        }
                         activity?.runOnUiThread {
-                            initCountdown(response.body()?.launches?.get(0)?.launchWindowStart!!)
+                            initCountdown(response.body()?.launches?.get(0)?.launchWindowStart)
                         }
                     }
+
                 }, 0, 1000)
             }
         })
@@ -68,12 +74,12 @@ class LaunchList : Fragment(), OnItemLaunchListClickListener {
 
         activity?.supportFragmentManager
             ?.beginTransaction()
-            ?.replace(com.example.rocketlaunch.R.id.container, LaunchDetail.newInstance(launchId))
+            ?.replace(R.id.container, LaunchDetail.newInstance(launchId))
             ?.addToBackStack(LaunchDetail::javaClass.name)
             ?.commit()
     }
 
-    fun initCountdown(windowStart: String) {
+    fun initCountdown(windowStart: String?) {
 
         val dateFormat = SimpleDateFormat("yyyy-MM-dd")
         val windowStart = dateFormat.parse(windowStart)
@@ -92,6 +98,14 @@ class LaunchList : Fragment(), OnItemLaunchListClickListener {
         tv_countdown_hour.text = hours.toString() + " HRS"
         tv_countdown_minute.text = minutes.toString() + " MINS"
         tv_countdown_second.text = seconds.toString() + " SECS"
+
+        Log.d("TIMER", "initCountdown $days DAYS")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("TIMER", "onStop")
+        stop = true
 
     }
 

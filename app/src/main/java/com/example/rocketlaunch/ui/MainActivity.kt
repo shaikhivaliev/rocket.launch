@@ -3,8 +3,8 @@ package com.example.rocketlaunch.ui
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import com.example.rocketlaunch.R
 import com.example.rocketlaunch.map.MapFragment
@@ -40,10 +40,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun changeFragment(fragment: Fragment) {
 
+        Log.d("TIMER", "changeFragment")
+
+
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.container, fragment)
-            .addToBackStack(fragment.javaClass.simpleName)
+            .addToBackStack(fragment::javaClass.name)
             .commit()
 
     }

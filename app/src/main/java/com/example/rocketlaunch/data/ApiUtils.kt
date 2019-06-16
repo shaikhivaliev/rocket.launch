@@ -1,4 +1,4 @@
-package com.example.rocketlaunch.server
+package com.example.rocketlaunch.data
 
 import com.example.rocketlaunch.BuildConfig
 import com.google.gson.Gson

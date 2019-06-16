@@ -4,13 +4,11 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.example.rocketlaunch.R
 import com.example.rocketlaunch.entity.Launch
 import com.example.rocketlaunch.entity.LaunchResponce
-import com.example.rocketlaunch.server.ApiUtils
+import com.example.rocketlaunch.data.ApiUtils
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_launch_detail.*
 import retrofit2.Call

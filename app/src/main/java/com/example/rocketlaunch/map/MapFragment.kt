@@ -6,10 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.rocketlaunch.R
-import com.example.rocketlaunch.entity.Launch
 import com.example.rocketlaunch.entity.Pad
 import com.example.rocketlaunch.entity.PadResponce
-import com.example.rocketlaunch.server.ApiUtils
+import com.example.rocketlaunch.data.ApiUtils
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
