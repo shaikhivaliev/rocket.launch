@@ -54,7 +54,6 @@ class LaunchDetail : Fragment() {
                 if (response.body() == null) return
                 val launch: Launch = response.body()?.launches?.get(0)!!
 
-
                 initUI(launch)
             }
         })
@@ -63,7 +62,11 @@ class LaunchDetail : Fragment() {
     fun initUI(launch: Launch) {
 
         val imageUrl: String = launch.rocket.rocketImageURL
-        Picasso.get().load(imageUrl).into(iv_detail_fragment)
+        Picasso.get().load(imageUrl).into(launch_detail_background)
+
+        launch_detail_rocket.text = launch.rocket.rocketName
+        //launch_detail_date.text = launch.startDate.toString()
+        launch_detail_description.text = launch.missions[0].description
 
     }
 

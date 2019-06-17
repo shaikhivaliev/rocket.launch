@@ -1,4 +1,4 @@
-package com.example.rocketlaunch.map
+package com.example.rocketlaunch.ui.map
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
