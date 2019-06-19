@@ -1,4 +1,4 @@
-package com.example.rocketlaunch.ui
+package com.example.rocketlaunch.ui.launches
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -7,18 +7,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.example.rocketlaunch.R
-import com.example.rocketlaunch.data.ApiUtils
 import com.example.rocketlaunch.entity.Launch
-import com.example.rocketlaunch.entity.LaunchResponce
 import com.example.rocketlaunch.presentation.LaunchListPresenter
 import com.example.rocketlaunch.presentation.LaunchListView
+import com.example.rocketlaunch.ui.LaunchAdapter
+import com.example.rocketlaunch.ui.OnItemLaunchListClickListener
+import com.example.rocketlaunch.ui.launch.Detail
+import com.example.rocketlaunch.ui.launch.DetailImage
 import kotlinx.android.synthetic.main.fragment_launch_list.*
 import kotlinx.android.synthetic.main.item_countdown.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -95,8 +93,8 @@ class LaunchList : Fragment(), OnItemLaunchListClickListener, LaunchListView {
 
         activity?.supportFragmentManager
             ?.beginTransaction()
-            ?.replace(R.id.container, LaunchDetail.newInstance(launchId))
-            ?.addToBackStack(LaunchDetail::javaClass.name)
+            ?.replace(R.id.container, Detail.newInstance(launchId))
+            ?.addToBackStack(DetailImage::javaClass.name)
             ?.commit()
     }
 

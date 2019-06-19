@@ -6,4 +6,7 @@
     <string name="next_rocket_launch">Next rocket launch:</string>
     <string name="rocket">Rocket</string>
     <string name="date">Date</string>
+    <string name="detail_image">Image</string>
+    <string name="detail_text">Information</string>
+
 </resources>

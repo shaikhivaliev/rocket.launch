@@ -1,13 +1,11 @@
 package com.example.rocketlaunch.presentation
 
 import android.util.Log
-import android.widget.Toast
 import com.example.rocketlaunch.data.ApiUtils
 import com.example.rocketlaunch.entity.LaunchResponce
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.*
 
 class LaunchListPresenter(val view: LaunchListView) {
 
@@ -27,8 +25,6 @@ class LaunchListPresenter(val view: LaunchListView) {
             }
         })
 
-
     }
-
 
 }

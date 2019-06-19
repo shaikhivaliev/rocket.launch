@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import com.example.rocketlaunch.R
+import com.example.rocketlaunch.ui.launches.LaunchList
 import com.example.rocketlaunch.ui.map.MapFragment
 
 class MainActivity : AppCompatActivity() {
